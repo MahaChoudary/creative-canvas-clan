@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WalletCardsIndexRouteImport } from './routes/wallet-cards.index'
+import { Route as WalletCardsSlugRouteImport } from './routes/wallet-cards.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WalletCardsIndexRoute = WalletCardsIndexRouteImport.update({
+  id: '/wallet-cards/',
+  path: '/wallet-cards/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WalletCardsSlugRoute = WalletCardsSlugRouteImport.update({
+  id: '/wallet-cards/$slug',
+  path: '/wallet-cards/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/wallet-cards/$slug': typeof WalletCardsSlugRoute
+  '/wallet-cards/': typeof WalletCardsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/wallet-cards/$slug': typeof WalletCardsSlugRoute
+  '/wallet-cards': typeof WalletCardsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/wallet-cards/$slug': typeof WalletCardsSlugRoute
+  '/wallet-cards/': typeof WalletCardsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/wallet-cards/$slug' | '/wallet-cards/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/wallet-cards/$slug' | '/wallet-cards'
+  id: '__root__' | '/' | '/wallet-cards/$slug' | '/wallet-cards/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  WalletCardsSlugRoute: typeof WalletCardsSlugRoute
+  WalletCardsIndexRoute: typeof WalletCardsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/wallet-cards/': {
+      id: '/wallet-cards/'
+      path: '/wallet-cards'
+      fullPath: '/wallet-cards/'
+      preLoaderRoute: typeof WalletCardsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wallet-cards/$slug': {
+      id: '/wallet-cards/$slug'
+      path: '/wallet-cards/$slug'
+      fullPath: '/wallet-cards/$slug'
+      preLoaderRoute: typeof WalletCardsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  WalletCardsSlugRoute: WalletCardsSlugRoute,
+  WalletCardsIndexRoute: WalletCardsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
