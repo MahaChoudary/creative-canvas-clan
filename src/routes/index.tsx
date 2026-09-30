@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Gift, Instagram, MessageCircle, Package, Sparkles, Star } from "lucide-react";
-import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
+import { ButtonAnchor, ButtonLink } from "@/components/ui/brand-button";
 import { ProductCard } from "@/components/ProductCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { featuredProducts, galleryImages, reviews } from "@/data/products";
