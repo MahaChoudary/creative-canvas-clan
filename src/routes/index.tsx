@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Gift, Instagram, MessageCircle, Package, Sparkles, Star } from "lucide-react";
-import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
+import { ButtonAnchor, ButtonLink } from "@/components/ui/brand-button";
 import { ProductCard } from "@/components/ProductCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { featuredProducts, galleryImages, reviews } from "@/data/products";
@@ -60,13 +60,13 @@ function Home() {
 
           <div className="grid grid-cols-2 gap-4">
             <img
-              src={galleryImages[0].url}
-              alt={galleryImages[0].alt}
+              src={galleryImages[0]!.url}
+              alt={galleryImages[0]!.alt}
               className="surface-card mt-8 aspect-3/4 w-full object-cover"
             />
             <img
-              src={galleryImages[4].url}
-              alt={galleryImages[4].alt}
+              src={galleryImages[4]!.url}
+              alt={galleryImages[4]!.alt}
               className="surface-card aspect-3/4 w-full object-cover"
             />
           </div>
@@ -96,8 +96,8 @@ function Home() {
       <section className="bg-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2">
           <img
-            src={galleryImages[2].url}
-            alt={galleryImages[2].alt}
+            src={galleryImages[2]!.url}
+            alt={galleryImages[2]!.alt}
             className="surface-card aspect-4/3 w-full object-cover"
           />
           <div>

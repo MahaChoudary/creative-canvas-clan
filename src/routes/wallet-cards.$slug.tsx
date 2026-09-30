@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { Check, ChevronLeft, Truck } from "lucide-react";
 import { useState } from "react";
-import { Button, ButtonLink } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/brand-button";
 import { ProductCard } from "@/components/ProductCard";
 import { QuantitySelector } from "@/components/QuantitySelector";
 import { Badge } from "@/components/ui/SectionHeading";
@@ -46,7 +46,7 @@ function ProductDetailView({ product }: { product: Product }) {
   const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [customization, setCustomization] = useState<Record<string, string>>(() =>
-    Object.fromEntries(product.customizationOptions.map((o) => [o.label, o.choices[0]])),
+    Object.fromEntries(product.customizationOptions.map((o) => [o.label, o.choices[0] ?? ""])),
   );
   const [added, setAdded] = useState(false);
 
@@ -58,7 +58,7 @@ function ProductDetailView({ product }: { product: Product }) {
       slug: product.slug,
       name: product.name,
       price: product.price,
-      image: product.images[0],
+      image: product.images[0] ?? "",
       quantity,
       customization,
     });

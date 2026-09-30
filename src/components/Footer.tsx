@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, MapPin, MessageCircle, Truck } from "lucide-react";
 import logo from "@/assets/logo.png.asset.json";
 import { site, whatsappInquiryMessage, whatsappLink } from "@/config/site";
-import { ButtonLink } from "@/components/ui/Button";
+import { ButtonLink } from "@/components/ui/brand-button";
 
 export function Footer() {
   return (
