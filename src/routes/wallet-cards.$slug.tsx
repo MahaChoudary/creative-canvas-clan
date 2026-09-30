@@ -46,7 +46,7 @@ function ProductDetailView({ product }: { product: Product }) {
   const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [customization, setCustomization] = useState<Record<string, string>>(() =>
-    Object.fromEntries(product.customizationOptions.map((o) => [o.label, o.choices[0]])),
+    Object.fromEntries(product.customizationOptions.map((o) => [o.label, o.choices[0] ?? ""])),
   );
   const [added, setAdded] = useState(false);
 
